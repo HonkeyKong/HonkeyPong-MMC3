@@ -1,0 +1,19 @@
+; HonkeyPong-MMC3 128KB CHR-ROM
+
+; Include our initial 8KB graphics first.
+.incbin "../res/chr/HonkeyPong.chr"
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.
+.incbin "../res/banks/dummy8k.bin" ; Dummy 8KB bank, zero-filled.

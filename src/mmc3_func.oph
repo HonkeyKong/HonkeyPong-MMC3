@@ -1,0 +1,81 @@
+; MMC3 Functions
+
+.macro SwitchBank 			; `SwitchBank Location BankNumber
+  LDA #_1
+  STA MMC3BankControl
+  LDA #_2
+  STA MMC3BankSelect
+.macend
+
+; Roll through the init table, smack the mapper
+; bank stuff into place. Blame tepples for this 
+; quick & dirty setup. It's small and it works.
+InitMMC3: 				; "Let's play 6502 golf."
+  LDX #$07 				; Start at 8th index.
+* STX MMC3BankControl 	; Which bank are we mapping?
+  LDA MMC3InitTable, X 	; Pull from the init table.
+  STA MMC3BankSelect 	; Select this chunk of ROM.
+  DEX 					; Subtract X by one.
+  BPL - 				; (Yes, we're counting backwards.)
+  STA MMC3Mirror 		; We're at zero now, store it
+  				 		; in mirror control to set up
+  				 		; vertical mirroring.
+  RTS					; TA-DAAAAAH! Everything's ready.
+
+; Lookup table for InitMMC3 subroutine.
+MMC3InitTable:
+  .byte $00,$02,$04,$05,$06,$07,$00,$01
+
+; Call this to unlock TSROM/TKROM 8KB Work RAM.
+UnlockMMC3WRAM:
+  LDA #WRAMEnable
+  STA MMC3WRAMProtect
+  RTS
+
+; Call this to lock TSROM/TKROM 8KB Work RAM.
+LockMMC3WRAM:
+  LDA #WRAMDisable
+  STA MMC3WRAMProtect
+  RTS
+
+; TODO: Come back later and alias WRAM locations.
+ClearMMC3WRAM:		; Clear out MMC3 WRAM. Erases battery backup on TKROM.
+	JSR UnlockMMC3WRAM
+	LDX	#$00
+*	LDA	#$00
+	STA	$6000,X
+	STA	$6100,X
+	STA $6200,X
+	STA	$6300,X
+	STA	$6400,X
+	STA	$6500,X
+	STA	$6600,X
+	STA	$6700,X
+	STA	$6800,X
+	STA	$6900,X
+	STA $6A00,X
+	STA	$6B00,X
+	STA	$6C00,X
+	STA	$6D00,X
+	STA	$6E00,X
+	STA	$6F00,X
+	STA	$7000,X
+	STA	$7100,X
+	STA $7200,X
+	STA	$7300,X
+	STA	$7400,X
+	STA	$7500,X
+	STA	$7600,X
+	STA	$7700,X
+	STA	$7800,X
+	STA	$7900,X
+	STA $7A00,X
+	STA	$7B00,X
+	STA	$7C00,X
+	STA	$7D00,X
+	STA	$7E00,X
+	STA	$7F00,X
+	INX
+	BNE	-
+	JSR LockMMC3WRAM
+	RTS

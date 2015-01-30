@@ -1,0 +1,11 @@
+; HonkeyPong-MMC3 128KB PRG-ROM
+
+.incbin "../res/banks/dummy16k.bin" ; 16KB zero-filled dummy file.
+.incbin "../res/banks/dummy16k.bin" ; 16KB zero-filled dummy file.
+.incbin "../res/banks/dummy16k.bin" ; 16KB zero-filled dummy file.
+.incbin "../res/banks/dummy16k.bin" ; 16KB zero-filled dummy file.
+.incbin "../res/banks/dummy16k.bin" ; 16KB zero-filled dummy file.
+.incbin "../res/banks/dummy16k.bin" ; 16KB zero-filled dummy file.
+.incbin "../res/banks/dummy16k.bin" ; 16KB zero-filled dummy file.
+.incbin "../res/banks/dummy8k.bin" 	; 8KB zero-filled dummy file.
+.include "main.oph" 				; Main program bank.

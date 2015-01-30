@@ -1,0 +1,25 @@
+; This is our main build file, where everything is put together
+; in the common iNES format, accepted by most NES emulators.
+
+; Tell the assembler the name of the output file.
+.outfile "bin/HonkeyPong-MMC3.nes"
+
+; Build the iNES ROM header
+.byte "NES"			; File Descriptor
+.byte $1A 			; MS-DOS EOF
+.byte $08			; 8 16KB PRG banks
+.byte $10			; 16 8KB CHR bank
+.byte %01000000	; Memory flags
+; Horizontal Mirroring, no SRAM, no trainer, Mapper 4 (MMC3).
+.byte %00000000	; System Flags
+; No mapper high byte, No VS Unisystem or PC-10
+.byte $00 			; No PRG-RAM, inferring 8KB for compatibility.
+.byte $00 			; TV system specification (NTSC)
+.byte %00010000	; TV Specification bits (NTSC), no SRAM, no bus conflicts.
+.byte $00,$00,$00,$00,$00 ; Zero-fill remaining header bytes.
+
+; Next, build the 128KB program ROM.
+.include "src/HonkeyPong-MMC3-PRG.oph"			; PRG-ROM bank
+
+; Finally, build the 128KB character ROM.
+.include "src/HonkeyPong-MMC3-CHR.oph" ; CHR-ROM bank

@@ -1,0 +1,37 @@
+; 8KB MMC3 Work RAM, also serves as 
+; battery-backed SRAM on TKROM boards.
+; Located at $6000-$7FFF
+  .alias	MMC3WRAM			$6000
+
+; MMC3 Bank Control Register
+  .alias	MMC3BankControl		$8000
+    .alias	CHR2K0			$00 	; PPU $0000-$07FF
+    .alias	CHR2K1			$01		; PPU $0800-$0FFF
+    .alias	CHR1K0			$02		; PPU $1000-$13FF
+    .alias	CHR1K1			$03 	; PPU $1400-$17FF
+    .alias	CHR1K2			$04 	; PPU $1800-$1BFF
+    .alias	CHR1K3			$05 	; PPU $1C00-$1FFF
+    .alias	PRG00			  $06 	; CPU $8000-$9FFF
+    .alias	PRG01			  $07 	; CPU $A000-$BFFF
+
+; MMC3 Bank Select Register
+  .alias		MMC3BankSelect	$8001
+
+; Aliases for MMC3 interupts.
+  .alias 		MMC3IRQLatch	$C000
+  .alias		MMC3IRQReload	$C001
+
+; MMC3 Nametable Mirroring Control Register
+  .alias		MMC3Mirror		$A000
+    .alias	vert			$00
+    .alias	horiz			$01
+
+; MMC3 Work RAM protection control
+  .alias 	MMC3WRAMProtect		$A001
+    .alias WRAMEnable			$80
+    .alias WRAMDisable		$00
+
+; Writing anything to these registers will enable
+; or acknowledge/disable the MMC3 interrupts.
+  .alias	MMC3IRQOff		$E000
+  .alias	MMC3IRQOn			$E001
